@@ -35,16 +35,27 @@ driver=webdriver.Chrome(chrome_options=chrome_options,
 driver.get(main_page_url)
 time.sleep(1)
 
-for i in range(2):
+for i in range(6):
         js = "var q=document.documentElement.scrollTop=10000"
         driver.execute_script(js)
-        time.sleep(2)
+        time.sleep(6)
 
+listtt=[]
+listt=[]
 elements =driver.find_elements_by_xpath('//div[@class="left_title"]')
 for t in elements:
-         print(t.text)
-   
-            
-    
+    listtt.append(t.text)
+  
+like =driver.find_elements_by_xpath('//div[@class="like_text"]')
+for t in like:
+    listt.append(int(t.text))
+res={}
+res=dict(zip(listt,listtt))   
+s=sorted(res.items(),key=lambda x:x[0])
+e=len(s)
+for i in range(e-1,e-11,-1):
+    print(s[i])
 
+    
+    
 print()
